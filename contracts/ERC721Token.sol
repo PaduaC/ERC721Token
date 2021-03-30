@@ -1,8 +1,8 @@
-// SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: UNLICENSED
 pragma solidity 0.8.1;
 
 import {ERC721Interface} from "./ERC721Interface.sol";
-import {ERC721TokenReciever} from "./ERC721TokenReceiver.sol";
+import {ERC721TokenReceiver} from "./ERC721TokenReceiver.sol";
 
 /**
  * @dev Utility library of inline functions on addresses.
@@ -46,11 +46,21 @@ contract ERC721Token is ERC721Interface {
     mapping(address => mapping(address => bool)) private ownerToOperators;
     bytes4 internal constant MAGIC_ON_ERC721_RECEIVED = 0x150b7a02;
 
-    function balanceOf(address _owner) external view returns (uint256) {
+    function balanceOf(address _owner)
+        external
+        view
+        override
+        returns (uint256)
+    {
         return ownerToTokenCount[_owner];
     }
 
-    function ownerOf(uint256 _tokenId) external view returns (address) {
+    function ownerOf(uint256 _tokenId)
+        external
+        view
+        override
+        returns (address)
+    {
         return idToOwner[_tokenId];
     }
 
@@ -60,7 +70,7 @@ contract ERC721Token is ERC721Interface {
         address _to,
         uint256 _tokenId,
         bytes calldata data
-    ) external payable {
+    ) external payable override {
         _safeTransferFrom(_from, _to, _tokenId, data);
     }
 
@@ -68,7 +78,7 @@ contract ERC721Token is ERC721Interface {
         address _from,
         address _to,
         uint256 _tokenId
-    ) external payable {
+    ) external payable override {
         _safeTransferFrom(_from, _to, _tokenId, "");
     }
 
@@ -76,29 +86,42 @@ contract ERC721Token is ERC721Interface {
         address _from,
         address _to,
         uint256 _tokenId
-    ) external payable {
+    ) external payable override {
         _transfer(_from, _to, _tokenId);
     }
 
-    function approve(address _approved, uint256 _tokenId) external payable {
+    function approve(address _approved, uint256 _tokenId)
+        external
+        payable
+        override
+    {
         address owner = idToOwner[_tokenId];
         require(msg.sender == owner, "Not authorized");
         idToApproved[_tokenId] = _approved;
         emit Approval(owner, _approved, _tokenId);
     }
 
-    function setApprovalForAll(address _operator, bool _approved) external {
+    function setApprovalForAll(address _operator, bool _approved)
+        external
+        override
+    {
         ownerToOperators[msg.sender][_operator] = _approved;
         emit ApprovalForAll(msg.sender, _operator, _approved);
     }
 
-    function getApproved(uint256 _tokenId) external view returns (address) {
+    function getApproved(uint256 _tokenId)
+        external
+        view
+        override
+        returns (address)
+    {
         return idToApproved[_tokenId];
     }
 
     function isApprovedForAll(address _owner, address _operator)
         external
         view
+        override
         returns (bool)
     {
         return ownerToOperators[_owner][_operator];
