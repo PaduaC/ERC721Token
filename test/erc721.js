@@ -20,7 +20,17 @@ contract("ERC721Token", (accounts) => {
 
   it("should mint if admin", async () => {
     //const nextTokenId = parseInt(await token.nextTokenId());
+    const balanceBefore = await token.balanceOf(admin);
+    const tokenId = web3.utils.toBN(3);
+    const receipt = await token.mint({ from: admin });
     await token.mint({ from: admin });
+    const balanceAfter = await token.balanceOf(admin);
+    assert(balanceAfter.sub(balanceBefore).toNumber() === 2);
+    await expectEvent(receipt, "Transfer", {
+      _from: "0x0000000000000000000000000000000000000000",
+      _to: admin,
+      _tokenId: tokenId,
+    });
   });
 
   it("should NOT transfer if balance is 0", async () => {
