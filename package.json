@@ -1,0 +1,14 @@
+{
+  "name": "erc721",
+  "version": "1.0.0",
+  "description": "my first NFT project based on EatTheBlock's Dapp30 course",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
