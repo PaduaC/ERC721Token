@@ -45,6 +45,20 @@ contract ERC721Token is ERC721Interface {
     mapping(uint256 => address) private idToApproved;
     mapping(address => mapping(address => bool)) private ownerToOperators;
     bytes4 internal constant MAGIC_ON_ERC721_RECEIVED = 0x150b7a02;
+    address public admin;
+    uint256 public nextTokenId;
+
+    constructor() {
+        admin = msg.sender;
+    }
+
+    function mint() external {
+        require(msg.sender == admin, "only admin");
+        ownerToTokenCount[msg.sender]++;
+        idToOwner[nextTokenId] = msg.sender;
+        emit Transfer(address(0), msg.sender, nextTokenId);
+        nextTokenId++;
+    }
 
     function balanceOf(address _owner)
         external
