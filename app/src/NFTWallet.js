@@ -11,6 +11,7 @@ function NFTWallet() {
 
   return (
     <div>
+      {/* Make sure these are the right components */}
       <div>
         <h2>Mint</h2>
         <ContractData
@@ -22,7 +23,7 @@ function NFTWallet() {
       </div>
       <div>
         <h2>Transfer From</h2>
-        <ContractData
+        <ContractForm
           drizzle={drizzle}
           drizzleState={state}
           contract="ERC721Token"
@@ -31,7 +32,7 @@ function NFTWallet() {
       </div>
       <div>
         <h2>Safe Transfer</h2>
-        <ContractData
+        <ContractForm
           drizzle={drizzle}
           drizzleState={state}
           contract="ERC721Token"
@@ -40,7 +41,7 @@ function NFTWallet() {
       </div>
       <div>
         <h2>Approve</h2>
-        <ContractData
+        <ContractForm
           drizzle={drizzle}
           drizzleState={state}
           contract="ERC721Token"
@@ -49,7 +50,7 @@ function NFTWallet() {
       </div>
       <div>
         <h2>Approve All</h2>
-        <ContractData
+        <ContractForm
           drizzle={drizzle}
           drizzleState={state}
           contract="ERC721Token"
@@ -58,7 +59,7 @@ function NFTWallet() {
       </div>
       <div>
         <h2>Request Approval</h2>
-        <ContractData
+        <ContractForm
           drizzle={drizzle}
           drizzleState={state}
           contract="ERC721Token"
@@ -67,7 +68,7 @@ function NFTWallet() {
       </div>
       <div>
         <h2>Is Approved For All</h2>
-        <ContractData
+        <ContractForm
           drizzle={drizzle}
           drizzleState={state}
           contract="ERC721Token"
