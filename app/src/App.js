@@ -6,6 +6,7 @@ import drizzleOptions from "./drizzleOptions";
 import LoadingContainer from "./LoadingContainer.js";
 
 import NFTMetadata from "./NFTMetadata";
+import NFTWallet from "./NFTWallet";
 
 const drizzle = new Drizzle(drizzleOptions);
 const { DrizzleProvider } = drizzleReactHooks;
@@ -17,6 +18,7 @@ function App() {
       <DrizzleProvider drizzle={drizzle}>
         <LoadingContainer>
           <NFTMetadata />
+          <NFTWallet />
         </LoadingContainer>
       </DrizzleProvider>
     </div>
