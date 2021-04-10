@@ -1,5 +1,4 @@
 const { expectRevert, expectEvent } = require("@openzeppelin/test-helpers");
-const { web3 } = require("@openzeppelin/test-helpers/src/setup");
 const Token = artifacts.require("ERC721Token.sol");
 const MockBadRecipient = artifacts.require("MockBadRecipient.sol");
 
