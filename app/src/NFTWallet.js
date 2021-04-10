@@ -78,3 +78,5 @@ function NFTWallet() {
     </div>
   );
 }
+
+export default NFTWallet;
